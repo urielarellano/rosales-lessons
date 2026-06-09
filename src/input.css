@@ -119,7 +119,7 @@ p, b {
 
 /* hero section */
 .hero {
-    @apply pt-0 flex flex-col items-center gap-2
+    @apply pt-0 flex flex-col items-center gap-1
     bg-cover bg-no-repeat bg-center p-4 px-0 pb-40;
     font-size: 18px;
     /* choose background image */
@@ -132,17 +132,18 @@ p, b {
 }
 
 .hero-box {
-    @apply bg-white/85 md:w-[60%] w-[96%] rounded-3xl md:px-6 px-2 py-6 pb-10 flex flex-col items-center gap-6 text-black;
+    @apply bg-white/85 md:w-[60%] w-[96%] rounded-3xl 
+        md:px-6 px-1 py-6 pb-10 flex flex-col items-center md:gap-6 gap-4 text-black;
 }
 .hero h1 {
     @apply md:text-[52px] mb-1 text-shadow-sm
-        text-[32px] ;
+        text-[28px];
 }
 .hero h2 {
     @apply md:text-[24px] text-[18px] text-center;
 }
 .hero p {
-    @apply  text-center mb-2 md:mb-0;
+    @apply text-center mb-2 md:mb-0 md:text-[20px] text-[16px];
 }
 .heros.cta {
     @apply md:mb-0 mb-8;

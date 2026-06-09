@@ -1,0 +1,383 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    z-index: 1;
+}
+
+/* GLOBALS */
+body {
+    /* choose text font */
+    width: 100vw;
+    overflow-x: hidden !important;
+    position: relative;
+}
+img {
+    @apply max-w-[96vw];
+}
+
+h1 {
+    @apply flex items-center md:text-[42px] text-[36px] font-bold text-center 
+        leading-[1.2] mb-[15px];
+    color: #4682B4;
+}
+h1:before,
+h1:after {
+    content: "";
+    @apply flex-grow h-[2px] bg-[#4682B4];
+}
+h1:before {
+    @apply mr-[20px]; /* Spaces the left line away from the text */
+}
+h1:after {
+    @apply ml-[20px]; /* Spaces the right line away from the text */
+}
+
+h2 {
+    @apply text-[24px];
+}
+
+p, b {
+    @apply leading-[1.7em] md:text-[18px] text-[20px];
+}
+
+
+.highlight {
+    /* choose a highlight color */
+    background-color: yellow;
+    text-align: center;
+    padding: 2px 2px;
+}
+
+.bullet {
+    @apply w-[45vw] rounded flex flex-row items-center gap-6 p-6 pl-18 pr-18;
+}
+
+/* cta */
+.cta {
+    @apply flex flex-col items-center gap-4;
+}
+.cta-button {
+    @apply p-7 md:pl-16 md:pr-16 font-bold rounded-sm text-lg shadow-lg
+        pl-8 pr-8 text-center text-white;
+    /* choose cta button color */
+    background-color: #FF6B6B;
+}
+.cta-button:hover {
+    cursor: pointer;
+    /* choose cta button color */
+    background-color: rgb(227, 84, 84);
+}
+.cta span {
+    @apply md:w-[55%] w-[92%] text-center text-[16px];
+}
+
+/* icon-proof boxes */
+.icon-container {
+    @apply flex flex-row justify-center gap-6 flex-wrap w-[60%];
+}
+.icon-box {
+    @apply flex flex-col items-center w-[250px] gap-3 p-7 bg-white text-center text-lg;
+}
+
+/* pricing box */
+
+.pricing-box {
+    @apply md:w-[50vw] w-[92vw] flex flex-col gap-3 text-greyText;
+
+}
+.pricing-box span {
+    @apply text-[18px];
+}
+.pricing-box h3 {
+    display: block !important;
+    @apply text-[24px];
+}
+
+.price-title {
+    @apply flex md:flex-row flex-col md:items-center items-start md:justify-between gap-2;
+}
+.price-title h3 {
+    @apply md:max-w-[50%];
+}
+
+.lesson-cost {
+    @apply px-4 py-1 bg-gray-200 text-black text-[20px]! text-center;
+}
+
+/* contact info */
+.contact-info {
+    @apply text-center;
+}
+.contact-info p {
+    @apply w-full!;
+}
+
+/* LAYOUTS */
+
+/* hero section */
+.hero {
+    @apply pt-0 flex flex-col items-center gap-2
+    bg-cover bg-no-repeat bg-center p-4 px-0 pb-40;
+    font-size: 18px;
+    /* choose background image */
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
+        url("assets/Toledo.webp");
+}
+.true-header {
+    @apply py-4 px-8 flex flex-row justify-between w-full mb-1;
+}
+
+.hero-box {
+    @apply bg-white/85 md:w-[60%] w-[96%] rounded-3xl md:px-6 px-2 py-6 pb-10 flex flex-col items-center gap-6 text-black;
+}
+.hero h1 {
+    @apply md:text-[52px] mb-1 text-shadow-sm
+        text-[32px] ;
+}
+.hero h2 {
+    @apply md:text-[24px] text-[18px] text-center;
+}
+.hero p {
+    @apply  text-center mb-2 md:mb-0;
+}
+.heros.cta {
+    @apply md:mb-0 mb-8;
+}
+
+/* sinlge column section */
+.single {
+    @apply flex flex-col items-center gap-6 pt-20 pb-20;
+}
+.single h1 {
+    @apply md:w-[90%] w-[92%];
+}
+.single h2 {
+    @apply md:w-[40%] w-[92%] font-bold text-center mb-2;
+}
+.single p, .single b {
+    @apply md:w-[33%] w-[92%];
+}
+.single p {
+    color: #5E5E5E;
+}
+.single img {
+    @apply shadow-lg;
+}
+
+
+/* double column section */
+.double {
+    @apply md:grid md:grid-cols-2 items-center justify-center md:gap-y-14 gap-y-8 gap-x-8 w-[80%]
+        flex flex-col;
+}
+.double-col {
+    @apply flex flex-col items-center md:gap-5 gap-5;
+}
+.double h1, .double h2 {
+    @apply md:w-[85%] w-[94vw] text-left text-[36px];
+}
+.double p {
+    @apply md:w-[85%] w-[92vw];
+}
+.double.line {
+    @apply md:m-1 md:ml-11 ml-0;
+}
+
+/* background images */
+.background-image {
+    @apply bg-cover bg-center;
+    /* choose background image */
+    background-image:
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)),
+        url("");
+}
+
+.final-cta-background {
+    background-image: 
+        linear-gradient(to bottom, white 0%, white 50%, rgb(255, 255, 255, 0.1) 60%),
+        url('assets/final-background.jpg'); 
+    background-size: fill;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+/* logo section */
+.logo-section {
+    @apply md:flex md:flex-row items-center justify-center bg-gray-200 p-7 md:gap-20
+        flex flex-col gap-10;
+}
+.as-seen {
+    @apply p-3 bg-gray-300 font-bold;
+}
+.logo-container {
+    @apply flex flex-row justify-center flex-wrap md:gap-15 md:max-w-[65vw]
+        max-w-[96vw] gap-8;
+}
+.social-proof-logo {
+    /* adjust grayscale */
+    @apply h-8 filter grayscale opacity-65;
+}
+
+/* faq */
+.faq {
+    @apply max-w-2xl mx-auto mt-12 font-sans gap-2 flex flex-col;
+}
+
+.faq-item {
+    @apply border-b border-black/10;
+}
+
+.faq-question {
+    @apply w-full flex justify-between items-center p-5 text-lg font-bold
+         hover:bg-gray-300 transition cursor-pointer border-none bg-gray-100;
+}
+.faq-question.active {
+    /* choose active question background (brand color usually) */
+    @apply bg-red-100;
+}
+
+.faq-answer {
+    @apply max-h-0 overflow-hidden transition-all duration-300 px-5;
+}
+
+.faq-answer p {
+    @apply py-4 w-fit! text-gray-700;
+}
+
+.icon {
+    @apply text-2xl transition-transform;
+}
+
+
+
+/* form */
+.cta-form {
+    @apply flex flex-col items-center gap-3 md:w-[33%] w-[92%] text-lg;
+}
+.cta-form input,
+.cta-form textarea {
+    @apply border-2 border-gray-200 p-8 pt-4 pb-4 bg-white z-1
+        w-full focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+.cta-form span {
+    @apply absolute left-7 top-1/2 -translate-y-1/2 text-black;
+}
+
+
+/* quotes carousel */
+
+.quote-carousel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.carousel-window {
+    @apply md:w-[52vw] w-[90%] h-auto;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-track img {
+    @apply md:w-[40vw] w-[90%] h-auto;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    padding: 0.75rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+/* review carousel */
+.review-section {
+    @apply bg-cover bg-center;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)),
+        url("assets/students-really-learning.webp");
+}
+.review-carousel {
+    @apply flex items-center justify-center md:gap-8 gap-2 md:max-w-[900px] max-w-full mx-auto;
+    
+}
+
+.review-card {
+    @apply flex flex-col items-start md:max-w-[50vw] max-w-[80vw] 
+        p-8 rounded-2xl bg-stone-100 shadow-lg 
+        transition-opacity duration-200 ease-in-out;
+    opacity: 1;
+}
+.review-card > * {
+    @apply transition-opacity duration-200 ease-in-out;
+    opacity: 1;
+}
+
+.review-card.is-hidden > * {
+    opacity: 0;
+}
+
+.review-stars {
+    @apply text-2xl mb-4 text-amber-400;
+}
+
+.review-text {
+    @apply mb-6 leading-[1.7] self-center w-full! md:text-[18px] text-[16px];
+}
+
+.review-author {
+    @apply font-bold;
+}
+
+.review-date {
+    @apply text-sm opacity-60;
+}
+
+.carousel-btn {
+    @apply text-3xl cursor-pointer bg-transparent border-0
+        p-3 bg-white/40 rounded hover:bg-white/70;
+}
+
+
+/* social media icons */
+
+@layer components {
+
+  .social-icons {
+    @apply flex gap-8;
+  }
+
+  .social {
+    @apply w-11 h-11 flex items-center justify-center rounded-full text-white text-lg transition-all duration-200;
+  }
+
+  .social:hover {
+    @apply -translate-y-1 opacity-90;
+  }
+
+  .facebook {
+    @apply bg-[#1877F2];
+  }
+
+  .instagram {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  }
+
+  .linkedin {
+    @apply bg-[#0A66C2];
+  }
+
+  .youtube {
+    @apply bg-[#FF0000];
+  }
+}

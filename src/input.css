@@ -26,34 +26,45 @@ h1 {
 h1:before,
 h1:after {
     content: "";
-    @apply flex-grow h-[2px] bg-[#4682B4];
+    /* @apply flex-grow h-[2px] bg-[#4682B4]; */
 }
 h1:before {
-    @apply mr-[20px]; /* Spaces the left line away from the text */
+    /* @apply mr-[20px]; */
 }
 h1:after {
-    @apply ml-[20px]; /* Spaces the right line away from the text */
+    /* @apply ml-[20px]; */
 }
 
 h2 {
     @apply text-[24px];
+    color: #5E5E5E;
 }
 
 p, b {
     @apply leading-[1.7em] md:text-[18px] text-[20px];
 }
+p {
+    color: #5E5E5E;
+}
+.bullet {
+    @apply relative pl-[1.7em];
+}
+.bullet::before {
+    content: "";
+    @apply absolute h-[18px] w-[18px] border-[5px] border-blue-100 rounded-full 
+        left-0 top-[1em] translate-y-[-50%];
+    background-color: #4682B4;
+}
 
 
 .highlight {
     /* choose a highlight color */
-    background-color: yellow;
+    @apply rounded text-gray-700 py-[1px] px-[2px] pb-[2px];
+    background: linear-gradient(to bottom, #a8d8ff, #daf1ff);
     text-align: center;
-    padding: 2px 2px;
+
 }
 
-.bullet {
-    @apply w-[45vw] rounded flex flex-row items-center gap-6 p-6 pl-18 pr-18;
-}
 
 /* cta */
 .cta {
@@ -115,6 +126,12 @@ p, b {
     @apply w-full!;
 }
 
+
+.step-box {
+    @apply flex flex-col items-center gap-4 w-[300px] p-10 pl-6 pr-6 bg-white text-gray-700;
+    background: linear-gradient(rgb(255, 255, 255), rgb(143, 205, 255));
+}
+
 /* LAYOUTS */
 
 /* hero section */
@@ -132,7 +149,7 @@ p, b {
 }
 
 .hero-box {
-    @apply bg-white/85 md:w-[60%] w-[96%] rounded-3xl 
+    @apply bg-white/85 md:w-[70%] w-[96%] rounded-3xl 
         md:px-6 px-1 py-6 pb-10 flex flex-col items-center md:gap-6 gap-4 text-black;
 }
 .hero h1 {
@@ -154,16 +171,16 @@ p, b {
     @apply flex flex-col items-center gap-6 pt-20 pb-20;
 }
 .single h1 {
-    @apply md:w-[90%] w-[92%];
+    @apply md:w-[50%] w-[92%];
 }
 .single h2 {
     @apply md:w-[40%] w-[92%] font-bold text-center mb-2;
+    
 }
 .single p, .single b {
     @apply md:w-[33%] w-[92%];
 }
 .single p {
-    color: #5E5E5E;
 }
 .single img {
     @apply shadow-lg;
@@ -225,7 +242,7 @@ p, b {
 
 /* faq */
 .faq {
-    @apply max-w-2xl mx-auto mt-12 font-sans gap-2 flex flex-col;
+    @apply max-w-2xl mx-auto mt-3 font-sans gap-2 flex flex-col;
 }
 
 .faq-item {
@@ -238,7 +255,7 @@ p, b {
 }
 .faq-question.active {
     /* choose active question background (brand color usually) */
-    @apply bg-red-100;
+    background-color: rgb(209, 234, 255);
 }
 
 .faq-answer {
@@ -305,7 +322,7 @@ p, b {
 .review-section {
     @apply bg-cover bg-center;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)),
+        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)),
         url("assets/students-really-learning.webp");
 }
 .review-carousel {

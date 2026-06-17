@@ -75,11 +75,12 @@ p {
         pl-8 pr-8 text-center text-white;
     /* choose cta button color */
     background-color: #FF6B6B;
+    transition: transform 0.2s ease;
 }
 .cta-button:hover {
     cursor: pointer;
-    /* choose cta button color */
-    background-color: rgb(227, 84, 84);
+    
+    transform: translateY(-4px);
 }
 .cta span {
     @apply md:w-[55%] w-[92%] text-center text-[16px];
@@ -87,10 +88,12 @@ p {
 
 /* icon-proof boxes */
 .icon-container {
-    @apply flex flex-row justify-center gap-6 flex-wrap w-[60%];
+    @apply flex flex-row items-center justify-center gap-3 flex-wrap md:w-[65%] w-[96%];
 }
 .icon-box {
-    @apply flex flex-col items-center w-[250px] gap-3 p-7 bg-white text-center text-lg;
+    @apply md:max-w-52 max-w-44 py-4 px-5 rounded flex flex-row 
+        items-center justify-center text-center gap-2 shadow-sm;
+    background-color: #639BCA;
 }
 
 /* pricing box */
@@ -322,7 +325,7 @@ p {
 .review-section {
     @apply bg-cover bg-center;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2)),
+        linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2)),
         url("assets/students-really-learning.webp");
 }
 .review-carousel {

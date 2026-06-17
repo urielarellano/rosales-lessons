@@ -1,3 +1,23 @@
+/* cta scroll button */
+document.addEventListener('DOMContentLoaded', () => {
+  const ctaButtons = document.querySelectorAll('.cta-scroll');
+  const targetElement = document.getElementById('cta-scroll-to');
+
+  // Safety check: Only run the logic if the target element actually exists on the page
+  if (targetElement) {
+    ctaButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevents default jump behavior if it's an <a> tag
+        
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start' // Aligns the top of the element to the top of the viewport
+        });
+      });
+    });
+  }
+});
+
 /* FAQ dropdown functionality */
 const questions = document.querySelectorAll(".faq-question");
 
@@ -26,8 +46,8 @@ question.addEventListener("click", () => {
 const track = document.querySelector(".carousel-track");
 const slides = document.querySelectorAll(".carousel-track img");
 
-const prevBtn = document.querySelector(".prev");
-const nextBtn = document.querySelector(".next");
+const prevBtn = document.querySelector(".previous");
+const nextBtn = document.querySelector(".nextus");
 
 let currentIndex = 0;
 

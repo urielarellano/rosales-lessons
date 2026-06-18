@@ -1,3 +1,36 @@
+/* a/b testing local storage */
+// 1. Define the current active test name
+const CURRENT_TEST = 'headline_one'; 
+
+// 2. Check if user already has an assignment for THIS specific test
+let userAssignment = localStorage.getItem(`ab_test_${CURRENT_TEST}`);
+
+if (!userAssignment) {
+    // 50/50 split
+    let variant = Math.random() < 0.5 ? 'control' : 'variant_b';
+    
+    // Combine them into a clean string: "lead_test_one:variant_b"
+    userAssignment = `${CURRENT_TEST}:${variant}`;
+    localStorage.setItem(`ab_test_${CURRENT_TEST}`, userAssignment);
+}
+
+// 3. Apply your content changes based on the version
+if (userAssignment.includes('variant_b')) {
+    // Swap out copy/images to test here
+}
+
+// 4. Pass this exact string to GA4
+gtag('config', 'TAG_ID', {
+  'user_properties': {
+    'active_experiment': userAssignment
+  }
+});
+
+
+
+
+/////////////////////////////////////////////////////////
+
 /* cta scroll button */
 document.addEventListener('DOMContentLoaded', () => {
   const ctaButtons = document.querySelectorAll('.cta-scroll');
@@ -40,7 +73,6 @@ question.addEventListener("click", () => {
     }
 });
 });
-
 
 
 /*  review carousel */

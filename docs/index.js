@@ -16,6 +16,26 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  const form = document.querySelector('.cta-form');
+
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      // 1. Pause the submission for a split second
+      e.preventDefault();
+
+      // 2. Fire the lead event to GA4
+      gtag('event', 'generate_lead', {
+        'event_category': 'engagement',
+        'event_label': 'spanish_landing_page'
+      });
+
+      // 3. Give GA4 300 milliseconds to send the data, then submit to Formspree
+      setTimeout(() => {
+        form.submit();
+      }, 300);
+    });
+  }
 });
 
 /* FAQ dropdown functionality */

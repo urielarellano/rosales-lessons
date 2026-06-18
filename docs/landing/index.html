@@ -16,10 +16,16 @@
 
         // Apply content changes immediately before page renders to prevent flickering
         window.addEventListener('DOMContentLoaded', () => {
-            if (!userAssignment.includes('variant_b')) {
+            // b variation
+            if (userAssignment.includes('variant_b')) {
                 // Example: Swap your headline text
                 const headline = document.getElementById('hero-headline');
                 if (headline) headline.innerText = "Breakthrough Spanish-Learning Method Revealed by Teacher Whom Parents are 'Beggings' to Teach Their Kids!";
+            
+            // control content
+            } else {
+                const headline = document.getElementById('hero-headline');
+                if (headline) headline.innerText = "How I Taught my Daughter Spanish Using a Little-Known ‘Counter-Intuitive’ Method... and How it can Teach your Homeschooled Children to Have Spanish Conversations in 5 Months or Less!";
             }
         });
     </script>
@@ -85,7 +91,7 @@
 
     <div class="hero-box">
       <h2>ATTENTION HOMESCHOOL PARENTS:</h2>
-      <h1 id='hero-headline' class="rosalesDark">How I Taught my Daughter Spanish Using a Little-Known ‘Counter-Intuitive’ Method... and How it can Teach your Homeschooled Children to Have Spanish Conversations in 5 Months or Less!</h1>
+      <h1 id='hero-headline' class="rosalesDark"></h1>
       <p class="md:w-[80%] w-full">I’m a Spanish teacher with 11 years experience and I want to share the truth about ineffective Spanish teaching methods and how to make real progress in Spanish in the next few months</p>
       
       <div class="cta">

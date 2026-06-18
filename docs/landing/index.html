@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- <script>
+    <script>
         // Define active test name
         const CURRENT_TEST = 'headline_one'; 
 
@@ -19,10 +19,10 @@
             if (!userAssignment.includes('variant_b')) {
                 // Example: Swap your headline text
                 const headline = document.getElementById('hero-headline');
-                if (headline) headline.innerText = "Your New Variant B Headline!";
+                if (headline) headline.innerText = "Breakthrough Spanish-Learning Method Revealed by Teacher Whom Parents are 'Beggings' to Teach Their Kids!";
             }
         });
-    </script> -->
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXSRW81HX4"></script>
     <script>
@@ -30,9 +30,13 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-BXSRW81HX4');
+        gtag('config', 'G-BXSRW81HX4', {
+            'user_properties': {
+            'active_experiment': userAssignment
+          }
+        });
     </script>
-    
+
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,7 +84,7 @@
     </div>
 
     <div class="hero-box">
-      <h2>Attention homeschool parents frustrated with Spanish-learning apps and programs:</h2>
+      <h2>ATTENTION HOMESCHOOL PARENTS:</h2>
       <h1 id='hero-headline' class="rosalesDark">How I Taught my Daughter Spanish Using a Little-Known ‘Counter-Intuitive’ Method... and How it can Teach your Homeschooled Children to Have Spanish Conversations in 5 Months or Less!</h1>
       <p class="md:w-[80%] w-full">I’m a Spanish teacher with 11 years experience and I want to share the truth about ineffective Spanish teaching methods and how to make real progress in Spanish in the next few months</p>
       

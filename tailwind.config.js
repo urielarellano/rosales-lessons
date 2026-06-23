@@ -9,6 +9,7 @@ module.exports = {
         rosalesLight: '#639BCA',
         greyText: '#5E5E5E',
         rosalesDark: '#3B6D97',
+        veryLight: '#dbefff',
         coral: '#FF6B6B'
       },
       fontFamily: {

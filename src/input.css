@@ -128,16 +128,29 @@ p {
 
 /* hero section */
 .hero {
+    @apply pt-0 flex flex-col items-center md:gap-1 gap-4
+    bg-contain bg-no-repeat bg-center p-4 px-0 pb-40;
+    font-size: 18px;
+    /* choose background image */
+    background: linear-gradient(
+        to bottom left,
+        #639BCA 0%,
+        #a9d4f7 30%,
+        #f0f6fb 100%
+    );
+}
+/* 
+.hero {
     @apply pt-0 flex flex-col items-center gap-1
     bg-cover bg-no-repeat bg-center p-4 px-0 pb-40;
     font-size: 18px;
-    /* choose background image */
     background-image:
         linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
         url("assets/Toledo.webp");
 }
+*/
 .true-header {
-    @apply py-4 px-8 flex flex-row justify-between w-full mb-1;
+    @apply py-4 px-8 flex flex-row justify-between w-full;
 }
 
 .hero-box {
@@ -145,14 +158,16 @@ p {
         md:px-6 px-1 py-6 pb-10 flex flex-col items-center md:gap-6 gap-4 text-black;
 }
 .hero h1 {
-    @apply md:text-[52px] mb-1 text-shadow-sm
-        text-[28px];
+    @apply md:text-[60px] mb-1 text-shadow-sm
+        text-[36px] md:w-[70%] w-[96vw];
+    color: #2e597c;
 }
 .hero h2 {
-    @apply md:text-[24px] text-[18px] text-center;
+    @apply md:text-[22px] text-[18px] text-center text-gray-800!;
 }
 .hero p {
-    @apply text-center mb-2 md:mb-0 md:text-[20px] text-[16px];
+    @apply text-center mb-2 md:mb-4 md:text-[20px] text-[16px] 
+        text-gray-800 md:w-[55%] w-[96vw];
 }
 .heros.cta {
     @apply md:mb-0 mb-8;
@@ -207,7 +222,7 @@ p {
 }
 
 .final-cta-background {
-    background-image: 
+    background-image:
         linear-gradient(to bottom, white 0%, white 50%, rgb(255, 255, 255, 0.1) 60%),
         url('assets/final-background.jpg'); 
     background-size: fill;

@@ -31,19 +31,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (form) {
     form.addEventListener('submit', function(e) {
-      // 1. Pause the submission for a split second
+      // 1. Check if the native HTML5 validation passes (required fields filled, valid email, etc.)
+      if (!form.checkValidity()) {
+        return; // Let the browser display its built-in error tooltips
+      }
+
+      // 2. Stop the form from executing the immediate redirect
       e.preventDefault();
 
-      // 2. Fire the lead event to GA4
+      // 3. Fire the lead event to GA4 with a built-in callback
       gtag('event', 'generate_lead', {
         'event_category': 'engagement',
-        'event_label': 'spanish_landing_page'
+        'event_label': 'spanish_landing_page',
+        'event_callback': function() {
+          // This runs the moment GA4 confirms it received the data
+          form.submit();
+        }
       });
 
-      // 3. Give GA4 300 milliseconds to send the data, then submit to Formspree
+      // 4. Fallback: If GA4 fails to load or takes too long, submit anyway so you don't lose the lead
       setTimeout(() => {
         form.submit();
-      }, 300);
+      }, 500); 
     });
   }
 

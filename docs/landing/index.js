@@ -29,32 +29,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const form = document.querySelector('.cta-form');
 
+  const form = document.querySelector('.cta-form');
+
   if (form) {
-    form.addEventListener('submit', function(e) {
-      // 1. Check if the native HTML5 validation passes (required fields filled, valid email, etc.)
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
       if (!form.checkValidity()) {
-        return; // Let the browser display its built-in error tooltips
+        form.reportValidity();
+        return;
       }
 
-      // 2. Stop the form from executing the immediate redirect
-      e.preventDefault();
+      const formData = new FormData(form);
+      const nameVal = formData.get('name');
+      const emailVal = formData.get('email');
 
-      // 3. Fire the lead event to GA4 with a built-in callback
-      gtag('event', 'generate_lead', {
-        'event_category': 'engagement',
-        'event_label': 'spanish_landing_page',
-        'event_callback': function() {
-          // This runs the moment GA4 confirms it received the data
-          form.submit();
-        }
-      });
-
-      // 4. Fallback: If GA4 fails to load or takes too long, submit anyway so you don't lose the lead
-      setTimeout(() => {
-        form.submit();
-      }, 500); 
+      fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(() => {
+          gtag('event', 'generate_lead', {
+            'event_category': 'engagement',
+            'event_label': 'spanish_landing_page'
+          });
+        })
+        .catch(() => { /* don't block booking even if Formspree hiccups */ })
+        .finally(() => showCalendly(nameVal, emailVal));
     });
   }
+
+  function showCalendly(name, email) {
+    const formEl = document.querySelector('.cta-form');
+    const calendlySection = document.getElementById('calendly-section');
+    const widgetDiv = calendlySection.querySelector('.calendly-inline-widget');
+
+    const baseUrl = widgetDiv.getAttribute('data-url').split('?')[0];
+    const params = new URLSearchParams({ name: name || '', email: email || '' });
+    const fullUrl = `${baseUrl}?${params.toString()}`;
+    widgetDiv.setAttribute('data-url', fullUrl);
+
+    formEl.style.display = 'none';
+    calendlySection.classList.remove('hidden');
+    calendlySection.scrollIntoView({ behavior: 'smooth' });
+
+    const initWidget = () => Calendly.initInlineWidget({ url: fullUrl, parentElement: widgetDiv });
+
+    if (window.Calendly) {
+      initWidget();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = initWidget;
+      document.body.appendChild(script);
+    }
+  }
+
+  // Track completed Calendly bookings
+  window.addEventListener('message', function (e) {
+    if (!e.data.event || e.data.event.indexOf('calendly') !== 0) return;
+
+    if (e.data.event === 'calendly.event_scheduled') {
+      gtag('event', 'calendly_booking', {
+        'event_category': 'engagement',
+        'event_label': 'spanish_landing_page'
+      });
+
+      // Replace CONVERSION_LABEL once you have it from Google Ads (see below)
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18251915418/oZjPCI-kstUcEJrBmP9D'
+
+      });
+    }
+  });
 
 });
 

@@ -29,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const form = document.querySelector('.cta-form');
 
-  const form = document.querySelector('.cta-form');
-
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();

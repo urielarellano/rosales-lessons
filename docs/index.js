@@ -17,34 +17,75 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  const form = document.querySelector('.cta-form');
+  const lessonForm = document.getElementById('lesson-form');
 
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      // 1. Check if the native HTML5 validation passes (required fields filled, valid email, etc.)
-      if (!form.checkValidity()) {
-        return; // Let the browser display its built-in error tooltips
+  if (lessonForm) {
+    lessonForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!lessonForm.checkValidity()) {
+        lessonForm.reportValidity();
+        return;
       }
 
-      // 2. Stop the form from executing the immediate redirect
-      e.preventDefault();
+      const formData = new FormData(lessonForm);
+      const nameVal = formData.get('name');
+      const emailVal = formData.get('email');
 
-      // 3. Fire the lead event to GA4 with a built-in callback
-      gtag('event', 'generate_lead', {
-        'event_category': 'engagement',
-        'event_label': 'spanish_landing_page',
-        'event_callback': function() {
-          // This runs the moment GA4 confirms it received the data
-          form.submit();
-        }
-      });
-
-      // 4. Fallback: If GA4 fails to load or takes too long, submit anyway so you don't lose the lead
-      setTimeout(() => {
-        form.submit();
-      }, 500); 
+      fetch(lessonForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      })
+        .then(() => {
+          gtag('event', 'generate_lead', {
+            'event_category': 'engagement',
+            'event_label': 'spanish_main_site'
+          });
+        })
+        .catch(() => { /* don't block booking even if Formspree hiccups */ })
+        .finally(() => showCalendly(nameVal, emailVal));
     });
   }
+
+  function showCalendly(name, email) {
+    const formEl = document.getElementById('lesson-form');
+    const calendlySection = document.getElementById('calendly-section');
+    const widgetDiv = calendlySection.querySelector('.calendly-inline-widget');
+
+    const baseUrl = widgetDiv.getAttribute('data-url').split('?')[0];
+    const params = new URLSearchParams({ name: name || '', email: email || '' });
+    const fullUrl = `${baseUrl}?${params.toString()}`;
+    widgetDiv.setAttribute('data-url', fullUrl);
+
+    formEl.style.display = 'none';
+    calendlySection.classList.remove('hidden');
+    calendlySection.scrollIntoView({ behavior: 'smooth' });
+
+    const initWidget = () => Calendly.initInlineWidget({ url: fullUrl, parentElement: widgetDiv });
+
+    if (window.Calendly) {
+      initWidget();
+    } else {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = initWidget;
+      document.body.appendChild(script);
+    }
+  }
+
+  window.addEventListener('message', function (e) {
+    if (!e.data.event || e.data.event.indexOf('calendly') !== 0) return;
+
+    if (e.data.event === 'calendly.event_scheduled') {
+      gtag('event', 'calendly_booking', {
+        'event_category': 'engagement',
+        'event_label': 'spanish_main_site'
+      });
+      // No 'send_to': AW-... here — this page isn't configured with the Ads tag,
+      // so only report to GA4. See note below.
+    }
+  });
 });
 
 /* FAQ dropdown functionality */
@@ -69,31 +110,6 @@ question.addEventListener("click", () => {
 });
 });
 
-
-/* quote carousel */
-
-const track = document.querySelector(".carousel-track");
-const slides = document.querySelectorAll(".carousel-track img");
-
-const prevBtn = document.querySelector(".previous");
-const nextBtn = document.querySelector(".nextus");
-
-let currentIndex = 0;
-
-function updateCarousel() {
-    const slideWidth = document.querySelector(".carousel-window img").offsetWidth;
-    track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-}
-
-nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateCarousel();
-});
-
-prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-    updateCarousel();
-});
 
 
 /*  review carousel */

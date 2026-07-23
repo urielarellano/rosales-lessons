@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // Replace CONVERSION_LABEL once you have it from Google Ads (see below)
       gtag('event', 'conversion', {
         'send_to': 'AW-18251915418/oZjPCI-kstUcEJrBmP9D'
-
       });
     }
   });

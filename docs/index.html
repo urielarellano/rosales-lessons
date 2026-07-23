@@ -467,15 +467,18 @@
         <p><b><u>Don’t wait any longer</u>!</b> The older someone gets, the harder it becomes to learn a new language.</p>
         <p>Enter your details below, click the button, and let’s get started.</p>
         <br>
-        <form class="cta-form" action="https://formspree.io/f/mrevkvar" method="POST">
-            <input name="name" placeholder="Name *" required>
-            <input type="email" name="email" placeholder="Email *" required>
-            <textarea name="message" placeholder="Questions/Comments *" required></textarea>
-            
-            <input type="hidden" name="_next" value="https://calendly.com/rosalesculturallessons/30-minute-meeting-clone?month=2026-06">
-            
-            <button class="cta-button" type="submit">Finally Learn Spanish For Life!</button>
+        
+        <form id="lesson-form" class="cta-form" action="https://formspree.io/f/mrevkvar" method="POST">
+          <input name="name" placeholder="Name *" required>
+          <input type="email" name="email" placeholder="Email *" required>
+          <textarea name="message" placeholder="Questions/Comments *" required></textarea>
+          <button class="cta-button" type="submit">Finally Learn Spanish For Life!</button>
         </form>
+
+        <div id="calendly-section" class="hidden">
+            <h2>Great! Now let's pick a time for your free lesson:</h2>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/rosalesculturallessons/30-minute-meeting-clone" style="min-width:320px;height:700px;"></div>
+        </div>
         <br>
 
     </div>

@@ -4,7 +4,7 @@
 <head>
     <script>
         // Define active test name
-        const CURRENT_TEST = 'headline_one'; 
+        const CURRENT_TEST = 'headline_two'; 
 
         // Check or set local storage group
         let userAssignment = localStorage.getItem(`ab_test_${CURRENT_TEST}`);
@@ -28,7 +28,7 @@
             // control content
             } else {
                 const headline = document.getElementById('hero-headline');
-                if (headline) headline.innerText = "How I Taught my Daughter Spanish Using a Little-Known ‘Counter-Intuitive’ Method... and How it can Teach your Homeschooled Children to Have Spanish Conversations in 5 Months or Less!";
+                if (headline) headline.innerText = "Breakthrough Spanish-Learning Method Revealed by Teacher Whom Parents are 'Beggings' to Teach Their Kids!";
                 
                 const subtext = document.getElementById('hero-subtext');
                 if (subtext) subtext.innerText = 'After 11 years teaching Spanish, I’m sharing the truth about ineffective Spanish teaching methods and how to have real Spanish conversations in the next few months';
